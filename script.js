@@ -72,34 +72,6 @@ function highlightActiveSection() {
 
 window.addEventListener('scroll', highlightActiveSection);
 
-// Form submission handler
-function setupFormHandler() {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Here you would typically send the data to a server
-            // For now, we'll just show an alert
-            console.log('Form submitted:', formData);
-            
-            // Show success message in current language
-            const t = translations[currentLang];
-            alert(t.contact.successMsg);
-            
-            // Reset form
-            contactForm.reset();
-        });
-    }
-}
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
@@ -200,7 +172,7 @@ const translations = {
             formMessage: "Tu Mensaje",
             formSubmit: "Enviar Mensaje",
             quote: "\"Transformar problemas en soluciones: esa es la misión de Algae Cycle Biotech. Si queremos un planeta sano y sostenible, debemos innovar para la vida humana y el resto de la naturaleza. Las microalgas son nuestro gran aliado para lograrlo.\"",
-            quoteAuthor: "— José Carlos Pons, CEO y Fundador",
+            quoteAuthor: "— Dr. José Carlos Pons",
             successMsg: "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto."
         },
         // Footer
@@ -276,7 +248,7 @@ const translations = {
             formMessage: "Your Message",
             formSubmit: "Send Message",
             quote: "\"Transforming problems into solutions: that is the mission of Algae Cycle Biotech. If we want a healthy and sustainable planet, we must innovate for human life and the rest of nature. Microalgae are our great ally to achieve this.\"",
-            quoteAuthor: "— José Carlos Pons, CEO and Founder",
+            quoteAuthor: "— Dr. José Carlos Pons",
             successMsg: "Thank you for your message! We will contact you soon."
         },
         // Footer
@@ -355,11 +327,6 @@ function setLanguage(lang) {
         if (index === 0) h3.textContent = t.contact.email;
         if (index === 1) h3.textContent = t.contact.website;
     });
-    document.querySelector('#name').placeholder = t.contact.formName;
-    document.querySelector('#email').placeholder = t.contact.formEmail;
-    document.querySelector('#subject').placeholder = t.contact.formSubject;
-    document.querySelector('#message').placeholder = t.contact.formMessage;
-    document.querySelector('.contact-form .btn-primary').textContent = t.contact.formSubmit;
     document.querySelector('.contact-quote-text p:first-child').textContent = t.contact.quote;
     document.querySelector('.contact-quote-author').textContent = t.contact.quoteAuthor;
     
@@ -384,9 +351,6 @@ function setLanguage(lang) {
 
 // Language switcher event listeners
 document.addEventListener('DOMContentLoaded', () => {
-    // Set up form handler
-    setupFormHandler();
-    
     const langButtons = document.querySelectorAll('.lang-btn');
     langButtons.forEach(btn => {
         btn.addEventListener('click', () => {
